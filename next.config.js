@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    basePath: process.env.BASE_PATH,
-    env: {
-       NEXTAUTH_URL: process.env.NEXTAUTH_URL
-    },
+    basePath: process.env.BASE_PATH || process.env.CUSTOMCONNSTR_BASE_PATH,
     reactStrictMode: false,
 }
 

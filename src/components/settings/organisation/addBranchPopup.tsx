@@ -20,7 +20,7 @@ const AddBranchPopup = ({ onClose }) => {
     const handleAddBranch = async () => {
         try{
             if (branchNameInput.trim() !== '') {
-                let resp = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/auth/admin/branch?orgId=${appState.currentOrgId}`, {
+                let resp = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/auth/admin/branch?orgId=${appState.currentOrgId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

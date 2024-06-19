@@ -13,7 +13,7 @@ const FinancesExpensesTableItem = () => {
 const [expenses,setExpenses]=useState<any[]>([]);
 const appState = useAppSelector((state) => state.app);
   const
-  {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/finance/expenses/getAll?branchId=${appState.currentBranchId}`,fetcher,{revalidateOnFocus:true});
+  {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/finance/expenses/getAll?branchId=${appState.currentBranchId}`,fetcher,{revalidateOnFocus:true});
   useEffect(()=>{
   if(!isLoading&&data&&!error){
   setExpenses(data);

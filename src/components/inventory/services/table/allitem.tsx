@@ -25,7 +25,7 @@ const ServicesAllItem = () => {
 
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/service/getAll?branchId=${appState.currentBranchId}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/service/getAll?branchId=${appState.currentBranchId}`)
     .then(response => response.json())
     .then(data => setServices(data))
     .catch(error => console.error('Error fetching data:', error));

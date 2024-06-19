@@ -25,7 +25,7 @@ export const MyOrganisationSettings = () => {
     const [orgBranches,setOrgBranches] = useState([]);
 
     async function fetchOrgBranches(){
-        let resp = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/auth/admin/branch/all?orgId=${appState.currentOrgId}`, {
+        let resp = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/auth/admin/branch/all?orgId=${appState.currentOrgId}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

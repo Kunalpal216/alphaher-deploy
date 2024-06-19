@@ -32,7 +32,7 @@ interface ProductBatch {
 const ServicesStockItem = ({ activeTabValue }: { activeTabValue: string }) => {
   const [products, setProducts] = useState<ProductBatch[]>([]);
   const appState = useAppSelector((state) => state.app)
- const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/getAll?branchId=${appState.currentBranchId}`,fetcher,{revalidateOnFocus:true})
+ const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/getAll?branchId=${appState.currentBranchId}`,fetcher,{revalidateOnFocus:true})
   useEffect(() => {
    if(!isLoading&&!error&&data){
     setProducts(data);

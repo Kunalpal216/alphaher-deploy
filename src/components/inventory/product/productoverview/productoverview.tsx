@@ -26,7 +26,7 @@ import useSWR from "swr"
 const fetcher = (...args:any[]) => fetch(...args).then(res => res.json())
 
 function useProductfetch (id: string | null,branchId:number|null) {
-    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/${id}?branchId=${branchId}`,fetcher,{revalidateOnFocus:true});
+    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/${id}?branchId=${branchId}`,fetcher,{revalidateOnFocus:true});
    return {
     fetchedProduct:data,
     isLoading,
@@ -34,7 +34,7 @@ function useProductfetch (id: string | null,branchId:number|null) {
    }
 }
 function useProductBatchfetch(id:string|null,branchId:number|null){
-    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/getAll/${id}?branchId=${branchId}`,fetcher,{revalidateOnFocus:true});
+    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/getAll/${id}?branchId=${branchId}`,fetcher,{revalidateOnFocus:true});
     return {
         fetchedBatches:data,
         isBatchLoading:isLoading,

@@ -43,7 +43,7 @@ const Navbar = () => {
   const currentRoute = usePathname();
   const [newNotificationIndicator, setNewNotificationIndicator] = useState<boolean>(false);
   const [notifs,setNotifs]=useState<any[]>([]);
-  const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/notifications/getAll?orgId=${appState.currentOrgId}`,fetcher,{refreshInterval:60000,revalidateOnFocus:true})
+  const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/notifications/getAll?orgId=${appState.currentOrgId}`,fetcher,{refreshInterval:60000,revalidateOnFocus:true})
   useEffect(() => {
    if (!isLoading && !error && data) {
      setNotifs(data.allNotifs);

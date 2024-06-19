@@ -48,7 +48,7 @@ const categoryOptions = [
 
     const fetchProductsAndProviders = async () => {
         console.log("inside fetch");
-        const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/branch/products?branchId=${appState.currentBranchId}`, {
+        const productsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/branch/products?branchId=${appState.currentBranchId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const categoryOptions = [
         });
         let productsJson = await productsResponse.json();
         console.log(productsJson);
-        const staffResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/branch/staff?branchId=${appState.currentBranchId}`, {
+        const staffResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/branch/staff?branchId=${appState.currentBranchId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const categoryOptions = [
             setButtonDisabled(true);
             const selectedProviders = formData.providers.map((provider:any) => provider.value);
             const selectedProducts = formData.linkProducts.map((linkProducts:any) => linkProducts.value);
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/service/create?branchId=${appState.currentBranchId}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/service/create?branchId=${appState.currentBranchId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

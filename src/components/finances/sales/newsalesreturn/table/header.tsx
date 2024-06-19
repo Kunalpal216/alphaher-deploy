@@ -27,7 +27,7 @@ const NewsalesReturnHeader = ({existingHeaderData}:any) => {
     const [customers,setCustomers]=useState<any[]>([]);
     const appState = useAppSelector((state) => state.app)
     const [dueDate, setDueDate] = useState(new Date());
-    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/database/clients/getAll?branchId=${appState.currentBranchId}`,fetcher,{revalidateOnFocus:true});
+    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/database/clients/getAll?branchId=${appState.currentBranchId}`,fetcher,{revalidateOnFocus:true});
     useEffect(() => {
         if (!disableButton && inputRef.current) {
             inputRef.current.focus();

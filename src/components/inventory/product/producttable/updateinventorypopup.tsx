@@ -47,7 +47,7 @@ interface ProductBatch {
     totalCost:number;
 }
 function useProductfetch (id: number | null) {
-    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/getAll?branchId=${id}`,fetcher,{revalidateOnFocus:true});
+    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/getAll?branchId=${id}`,fetcher,{revalidateOnFocus:true});
    return {
     fetchedProducts:data,
     isLoading,
@@ -55,7 +55,7 @@ function useProductfetch (id: number | null) {
    }
 }
 function useProductBatchfetch(id:number|null){
-    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/getAll/?branchId=${id}`,fetcher,{revalidateOnFocus:true});
+    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/getAll/?branchId=${id}`,fetcher,{revalidateOnFocus:true});
     return {
         fetchedBathces:data,
         isBatchLoading:isLoading,
@@ -273,25 +273,25 @@ const Popup2: React.FC<PopupProps> = ({ onClose }) => {
                 };
 
                 if(selectedOption===Stock.StockOUT){
-                    const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/${id}?branchId=${appState.currentBranchId}`, body);
+                    const response = await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/${id}?branchId=${appState.currentBranchId}`, body);
                     const notifData={
                         totalItems:body.quantity,
                         source:Notif_Source.Inventory_Timeline_Removed,
-                        url: `${process.env.NEXT_PUBLIC_API_BASE_PATH}/inventory/products/timeline`,
+                        url: `${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/inventory/products/timeline`,
                         orgId:appState.currentBranch.org.id
                     }
-                    const notif= await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/notifications/create`,notifData)
+                    const notif= await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/notifications/create`,notifData)
                     console.log('Updated inventory item:', response.data);
                 }else if(selectedOption===Stock.StockIN){
                     console.log("saving new batch")
-                    const response =await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/create?branchId=${appState.currentBranchId}`,body);
+                    const response =await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/product/productBatch/create?branchId=${appState.currentBranchId}`,body);
                     const notifData={
                         totalItems:body.quantity,
                         source:Notif_Source.Inventory_Timeline_Added,
-                        url: `${process.env.NEXT_PUBLIC_API_BASE_PATH}/inventory/products/timeline`,
+                        url: `${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/inventory/products/timeline`,
                         orgId:appState.currentBranch.org.id
                     }
-                    const notif= await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/notifications/create`,notifData)
+                    const notif= await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/notifications/create`,notifData)
                     console.log('Created New Batch Item:', response.data);
                 }
                 

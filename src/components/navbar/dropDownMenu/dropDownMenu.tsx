@@ -20,7 +20,7 @@ const DropdownMenu = () => {
   const dispatch = useAppDispatch();
 
   async function fetchOrgAndBranchMapping() {
-    let resp = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/navbar/dropdown?branchId=${appState.currentBranchId}`, {
+    let resp = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/navbar/dropdown?branchId=${appState.currentBranchId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ const fetcher = (...args:any[]) => fetch(...args).then(res => res.json())
 const FinacesOverviewTableItem = () => {
   const appState = useAppSelector((state) => state.app);
   const [timeline,setTimeline]=useState<any[]>([]);
-  const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/finance/getAll?branchId=${appState.currentBranchId}`,fetcher,{revalidateOnFocus:true});
+  const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/finance/getAll?branchId=${appState.currentBranchId}`,fetcher,{revalidateOnFocus:true});
   useEffect(()=>{
     if(!isLoading&&!error&&data){
       setTimeline(data);

@@ -26,7 +26,7 @@ const ExistingsaleEstimateTable = () => {
         const initialItems: any[] | (() => any[])=[];
         const [items, setItems] = useState(initialItems);
     
-        const {data,error,isLoading} =useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/finance/sales/${id}/?branchId=${appState.currentBranchId}`,fetcher)
+        const {data,error,isLoading} =useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/finance/sales/${id}/?branchId=${appState.currentBranchId}`,fetcher)
         
         
         useEffect(() => {

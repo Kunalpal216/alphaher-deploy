@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const LoginPage = () => {
     useEffect(() => {
-        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/bullScheduler`)
+        axios.get(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/bullScheduler`)
       }, []);
     
     return <div className='flex h-screen flex-col'>

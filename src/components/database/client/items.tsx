@@ -28,7 +28,7 @@ interface Patients{
 const DatabaseClientTableItem = () => {
     const [clients, setClients] = useState<Clients[]>([]);
     const appState = useAppSelector((state) => state.app)
-    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/database/clients/getAll?branchId=${appState.currentBranchId}`,fetcher, { revalidateOnFocus : true});
+    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/database/clients/getAll?branchId=${appState.currentBranchId}`,fetcher, { revalidateOnFocus : true});
     useEffect(() => {
         const handleWindowFocus = () => {
           console.log('Window focused');

@@ -21,7 +21,7 @@ interface Patients {
     gender: string;
 }
 function useClientFetch (id: number | null) {
-    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/database/clients/getAll?branchId=${id}`,fetcher, { revalidateOnFocus : true});
+    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/database/clients/getAll?branchId=${id}`,fetcher, { revalidateOnFocus : true});
    return {
     fetchedClients:data,
     isClientLoading:isLoading,
@@ -29,7 +29,7 @@ function useClientFetch (id: number | null) {
    }
 }
 function usePatientFetch (id: number | null) {
-    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/database/patients/getAll?branchId=${id}`,fetcher, { revalidateOnFocus :true});
+    const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/database/patients/getAll?branchId=${id}`,fetcher, { revalidateOnFocus :true});
    return {
     fetchedPatients:data,
     isPatientLoading:isLoading,

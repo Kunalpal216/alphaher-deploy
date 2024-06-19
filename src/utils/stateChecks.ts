@@ -15,7 +15,7 @@ export function isManagerOfBranch(branchId : Number,user : UserState){
 }
 
 export const fetchBranchDetailsById = async (branchId: Number) => {
-    const url = new URL(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/details/branch`);
+    const url = new URL(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/details/branch`);
     url.searchParams.append('branchId', String(branchId));
     const resp = await fetch(url, {
         method: 'GET',

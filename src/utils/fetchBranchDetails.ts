@@ -3,7 +3,7 @@ import prismaClient from '../../prisma';
 
 export const fetchBranchDetailsById = async (branchId: Number) => {
     console.log("Here's the branch id",branchId)
-    const url = new URL(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/details/branch`);
+    const url = new URL(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/details/branch`);
     url.searchParams.append('branchId', String(branchId));
     console.log("Here's the url",url)
     const resp = await fetch(url, {

@@ -120,7 +120,7 @@ const OrgSetup = () => {
 
       formSchema.parse(data);
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/auth/admin/orgRegister`,
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/auth/admin/orgRegister`,
         {
           method: 'POST',
           headers: {

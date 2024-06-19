@@ -30,7 +30,7 @@ const FinancesSalesTableItem = ({onCountsChange}:any) => {
     const [sales,setSales]=useState<Sales[]>([]);
     const currentUrl=useSearchParams();
     
-  const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/finance/sales/getAll?branchId=${appState.currentBranchId}`,fetcher)
+  const {data,error,isLoading}=useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/finance/sales/getAll?branchId=${appState.currentBranchId}`,fetcher)
   useEffect(()=>{
     const filteredData=data?.filter((sale:any)=>{
       if(currentUrl.get('type')==='all'){

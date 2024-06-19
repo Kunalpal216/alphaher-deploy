@@ -49,7 +49,7 @@ const ProductAllItem = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(10); 
   const appState = useAppSelector((state) => state.app);
-  const {data,error,isLoading}= useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/inventory/getAll?branchId=${appState.currentBranchId}`,fetcher)
+  const {data,error,isLoading}= useSWR(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/inventory/getAll?branchId=${appState.currentBranchId}`,fetcher)
   useEffect(()=>{
     if(!isLoading&&data&&!error){
       const filteredData = data.filter((inventory: { inventoryType: any; }) => inventory.inventoryType===Inventory.Product)

@@ -17,7 +17,7 @@ const NotificationList =  ({ notifs,isLoading }) => {
   (<Loading/>)
   </div>)
 
-  const readNotifs =  axios.put(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/notifications/updateAll?orgId=${appState.currentOrgId}`);
+  const readNotifs =  axios.put(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/notifications/updateAll?orgId=${appState.currentOrgId}`);
 
   return (
     <>

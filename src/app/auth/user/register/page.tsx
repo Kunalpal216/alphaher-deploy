@@ -42,7 +42,7 @@ export default function UserAccountSetupPage() {
 
         try {
 
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/auth/user/register${userInviteString ? "?userInviteString="+userInviteString : ""}`,
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/auth/user/register${userInviteString ? "?userInviteString="+userInviteString : ""}`,
                 {
                     method: 'POST',
                     headers: {

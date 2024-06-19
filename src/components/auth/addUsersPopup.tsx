@@ -29,7 +29,7 @@ const Popup = ({ onClose }) => {
     const handleSendInvite = async () => {
         try{
             if (emailInput.trim() !== '') {
-                let resp = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/api/settings/invite/create?branchId=${appState.currentBranchId}`, {
+                let resp = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH}/api/settings/invite/create?branchId=${appState.currentBranchId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
