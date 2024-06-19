@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    container_name: alphaherd_webapp
+    restart: always
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM node:18-alpine
+
+        ENV BASE_PATH /alphaherd
+        ENV NEXT_PUBLIC_API_BASE_PATH https://alphaherd.in/alphaherd
+        ENV DIRECT_URL postgres://citus:abc@2023@c-alphaherd-db.xx2jeqt7ds56zm.postgres.cosmos.azure.com:5432/alphaherd?sslmode=require
+        ENV DATABASE_URL prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMzBlMjIwODctYmYzZS00MjI2LTgyMmUtZTEyYjJlMzc1M2JlIiwidGVuYW50X2lkIjoiYTA5NTNmYTY3NGU2NTY5NWQ1Mjc4NGM1MGFjN2VkN2MyZWYzMzFiZDc0ZWNkNmU2YWI1MGY4MTcxMGNlZTYwYSIsImludGVybmFsX3NlY3JldCI6IjY5Y2E4YmVjLTgzYjktNGZkNC05YjQ1LTY0ODJlMjZkOTMzNyJ9.tiEt2GnbxSWdkOde0y2ECuYNikapKIZc2jMIy1AqYNE
+        ENV NEXT_PUBLIC_BASE_PATH /alphaherd
+        ENV AUTOMATED_GMAIL kunalpal215@gmail.com
+        ENV AUTOMATED_GMAIL_APP_PASSWORD kzfcthtkxyvsfgon
+
+        WORKDIR  /app
+        COPY package*.json ./
+        RUN npm install --legacy-peer-deps
+
+        COPY . ./
+
+        RUN npx prisma db push
+
+        CMD ["npm","run","dev"]
+    ports:
+      - '50000:3000'
