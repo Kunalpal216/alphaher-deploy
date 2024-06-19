@@ -5,6 +5,4 @@ RUN npm install --legacy-peer-deps
 
 COPY . ./
 
-RUN npx prisma db push
-
-CMD ["npm","run","dev"]
+CMD ["npx","prisma","db","push",";","npm","run","dev"]
