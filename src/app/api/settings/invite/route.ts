@@ -8,7 +8,7 @@ export const GET = async (req: NextRequest, res: NextResponse) => {
 
     // redirect method throws an error so it should be called outside the try catch block
 
-    let redirectURL = process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH;
+    let redirectURL = process.env.NEXT_PUBLIC_API_BASE_PATH || process.env.CUSTOMCONNSTR_NEXT_PUBLIC_API_BASE_PATH;
 
     console.log(req.method);
 
